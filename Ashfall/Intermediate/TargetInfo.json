@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Ashfall",
+			"Path": "../Source/Ashfall.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "AshfallEditor",
+			"Path": "../Source/AshfallEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
