@@ -1,7 +1,8 @@
 /Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/Characters/HeroCharacter.h
-/Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/Characters/BaseCharacter.h
 /Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/DataAssets/Input/DataAsset_InputConfig.h
-/Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/GameMode/AshfallGameModeBase.h
+/Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/Components/Input/AshfallInputComponent.h
 /Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/Controller/HeroController.h
+/Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/GameMode/AshfallGameModeBase.h
+/Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/Public/Characters/BaseCharacter.h
 /Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/AshfallGameMode.h
 /Users/kim/Documents/GitHub/kht9544/Project_Ashfall/Ashfall/Source/Ashfall/AshfallCharacter.h
