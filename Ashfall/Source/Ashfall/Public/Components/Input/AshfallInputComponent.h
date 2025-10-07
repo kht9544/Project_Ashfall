@@ -42,8 +42,11 @@ template<class UserObject,typename CallbackFunc>
 
 	for(const FAshfallInputActionConfig& AbilityInputActionConfig : InInputConfig->AbilityInputActions)
 	{
-		if(AbilityInputActionConfig.IsValid()) continue;
-
+		if(!AbilityInputActionConfig.IsValid())
+		{
+			continue;
+		} 
+		
 		BindAction(AbilityInputActionConfig.InputAction,ETriggerEvent::Started,ContextObject,InputPressedFunc, AbilityInputActionConfig.InputTag);
 		BindAction(AbilityInputActionConfig.InputAction,ETriggerEvent::Completed,ContextObject,InputRelasedFunc, AbilityInputActionConfig.InputTag);
 	}

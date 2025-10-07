@@ -84,6 +84,9 @@ void AHeroCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 
 	AshfallInputComponent->BindNativeInputAction(InputConfigDataAsset,AshfallGameplayTags::InputTag_Move,ETriggerEvent::Triggered,this,&ThisClass::Input_Move);
 	AshfallInputComponent->BindNativeInputAction(InputConfigDataAsset,AshfallGameplayTags::InputTag_Look,ETriggerEvent::Triggered,this,&ThisClass::Input_Look);
+
+	AshfallInputComponent->BindAbilityInputAction(InputConfigDataAsset,this,&ThisClass::Input_AbilityInputPressed,&ThisClass::Input_AbilityInputReleased);
+
 }
 
 void AHeroCharacter::Input_Move(const FInputActionValue& InputActionValue)
@@ -117,4 +120,14 @@ void AHeroCharacter::Input_Look(const FInputActionValue& InputActionValue)
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
 
+}
+
+void AHeroCharacter::Input_AbilityInputPressed(FGameplayTag InInputTag)
+{
+	AshfallAbilitySystemComponent->OnAbilityInputPressed(InInputTag);
+}
+
+void AHeroCharacter::Input_AbilityInputReleased(FGameplayTag InInputTag)
+{
+	AshfallAbilitySystemComponent->OnAbilityInputReleased(InInputTag);
 }
