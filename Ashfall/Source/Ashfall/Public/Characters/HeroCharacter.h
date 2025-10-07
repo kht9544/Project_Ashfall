@@ -10,6 +10,7 @@ class UCameraComponent;
 class USpringArmComponent;
 class UDataAsset_InputConfig;
 struct FInputActionValue;
+class UHeroCombatComponent;
 
 /**
  * 
@@ -22,8 +23,8 @@ class ASHFALL_API AHeroCharacter : public ABaseCharacter
 public:
 	AHeroCharacter();
 
-private:
-
+protected:
+	virtual void PossessedBy(AController* NewController) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void BeginPlay() override;
@@ -37,10 +38,13 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UHeroCombatComponent* HeroCombatComponent;
+
 #pragma endregion
 
 #pragma region Inputs
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CharacterData", meta = (AllowPrivateAccess = "true"))
 	UDataAsset_InputConfig* InputConfigDataAsset;
 
 	void Input_Move(const FInputActionValue& InputActionValue);
@@ -48,7 +52,13 @@ private:
 	void Input_Look(const FInputActionValue& InputActionValue);
 #pragma endregion
 
+public:
+	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const {return HeroCombatComponent;}
+
+
 };
+
+
 
 
 

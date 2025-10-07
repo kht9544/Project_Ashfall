@@ -10,6 +10,9 @@
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 #include "Components/Input/AshfallInputComponent.h"
 #include "AshfallGameplayTags.h"
+#include "AbilitySystem/AshfallAbilitySystemComponent.h"
+#include "DataAssets/StartUpData/DataAsset_HeroStartUpData.h"
+#include "Components/Combat/HeroCombatComponent.h"
 
 #include "DebugHelper.h"
 
@@ -35,6 +38,26 @@ AHeroCharacter::AHeroCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f,500.f,0.f);
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+
+	HeroCombatComponent = CreateDefaultSubobject<UHeroCombatComponent>(TEXT("HeroCombatComponent"));
+
+}
+
+void AHeroCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if(!CharacterStartUpData.IsNull())
+	{
+		
+		if(UDataAsset_StartUpDataBase* LoadedData = CharacterStartUpData.LoadSynchronous())
+		{
+			LoadedData->GiveToAbilitySystemComponent(AshfallAbilitySystemComponent);
+
+		}
+
+
+	}
 
 }
 

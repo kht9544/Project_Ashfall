@@ -17,6 +17,7 @@ public class Ashfall : ModuleRules
 			"EnhancedInput",
 			"GameplayTags",
 			"EnhancedInput",
+			"GameplayTasks"
 		});
 	}
 }

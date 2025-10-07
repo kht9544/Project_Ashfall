@@ -2,6 +2,10 @@
 
 
 #include "Characters/BaseCharacter.h"
+#include "AbilitySystem/AshfallAbilitySystemComponent.h"
+#include "AbilitySystem/AshfallAttributeSet.h"
+
+
 
 // Sets default values
 ABaseCharacter::ABaseCharacter()
@@ -12,6 +16,31 @@ ABaseCharacter::ABaseCharacter()
 
 	GetMesh()->bReceivesDecals = false;
 	
+	AshfallAbilitySystemComponent = CreateDefaultSubobject<UAshfallAbilitySystemComponent>(TEXT("AshfallAbilitySystemComponent"));
 
+	AshfallAttributeSet	= CreateDefaultSubobject<UAshfallAttributeSet>(TEXT("AshfallAttributeSet"));
+}
+
+void ABaseCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if(AshfallAbilitySystemComponent)
+	{
+		AshfallAbilitySystemComponent->InitAbilityActorInfo(this,this);
+		
+		ensureMsgf(!CharacterStartUpData.IsNull(),TEXT("Forgot to assign start up data to %s"),*GetName());
+
+	}
+}
+
+void ABaseCharacter::UnPossessed()
+{
+	Super::UnPossessed();
+}
+
+UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
+{
+	return GetAshfallAbilitySystemComponent();
 }
 
