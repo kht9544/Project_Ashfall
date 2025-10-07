@@ -6,6 +6,8 @@
 #include "AnimInstance/AshfallBaseAnimInstance.h"
 #include "AshfallHeroLinkedAnimInstance.generated.h"
 
+class UAshfallHeroAnimInstance;
+
 /**
  * 
  */
@@ -13,5 +15,10 @@ UCLASS()
 class ASHFALL_API UAshfallHeroLinkedAnimInstance : public UAshfallBaseAnimInstance
 {
 	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintPure, meta =(BlueprintThreadSafe))
+	UAshfallHeroAnimInstance* GetHeroAnimInstance() const;
 	
 };
+
