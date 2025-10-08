@@ -2,6 +2,7 @@
 
 
 #include "AbilitySystem/AshfallAbilitySystemComponent.h"
+#include "AbilitySystem/Abilities/AshfallGameplayAbility.h"
 
 void UAshfallAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInputTag)
 {
@@ -21,4 +22,24 @@ void UAshfallAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& I
 void UAshfallAbilitySystemComponent::OnAbilityInputReleased(const FGameplayTag& InInputTag)
 {
 	
+}
+
+void UAshfallAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FAshfallHeroAbilitySet>& InDefaultWeaponAbilities,int32 ApplyLevel)
+{
+    if(InDefaultWeaponAbilities.IsEmpty())
+    {
+        return;
+    }
+
+    for(const FAshfallHeroAbilitySet& AbilitySet : InDefaultWeaponAbilities)
+    {
+        if(AbilitySet.IsValid()) continue;
+
+        FGameplayAbilitySpec AbilitySpec(AbilitySet.AbilityToGrant);
+        AbilitySpec.SourceObject = GetAvatarActor();
+        AbilitySpec.Level = ApplyLevel;
+        AbilitySpec.DynamicAbilityTags.AddTag(AbilitySet.InputTag);
+
+        GiveAbility(AbilitySpec);
+    }
 }

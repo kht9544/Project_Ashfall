@@ -6,5 +6,6 @@
 
 AAshfallHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag InWeaponTag) const
 {
+    UE_LOG(LogTemp, Warning, TEXT("Hero CarriedWeapon Tag is %s"), *InWeaponTag.ToString());
     return Cast<AAshfallHeroWeapon>(GetCharacterCarriedWeaponByTag(InWeaponTag));
 }

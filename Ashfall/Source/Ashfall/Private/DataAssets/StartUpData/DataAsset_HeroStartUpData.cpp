@@ -5,10 +5,6 @@
 #include "AbilitySystem/Abilities/AshfallGameplayAbility.h"
 #include "AbilitySystem/AshfallAbilitySystemComponent.h"
 
-bool FAshfallHeroAbilitySet::IsValid() const
-{                  
-	return InputTag.IsValid() && AbilityToGrant;
-}
 
 void UDataAsset_HeroStartUpData::GiveToAbilitySystemComponent(UAshfallAbilitySystemComponent* InASCToGive,int32 ApplyLevel)
 {

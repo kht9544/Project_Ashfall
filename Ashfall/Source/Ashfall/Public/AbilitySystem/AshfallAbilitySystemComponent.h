@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
-#include "GameplayTagContainer.h"
+#include "AshfallTypes/AshfallStructTypes.h"
 #include "AshfallAbilitySystemComponent.generated.h"
+
 
 /**
  * 
@@ -18,7 +19,12 @@ class ASHFALL_API UAshfallAbilitySystemComponent : public UAbilitySystemComponen
 public:
 	void OnAbilityInputPressed(const FGameplayTag& InInputTag);
 	void OnAbilityInputReleased(const FGameplayTag& InInputTag);
+
+	UFUNCTION(BlueprintCallable, Category = "Ashfall|Ability", meta = (ApplyLevel = "1"))
+	void GrantHeroWeaponAbilities(const TArray<FAshfallHeroAbilitySet>& InDefaultWeaponAbilities,int32 ApplyLevel);
 	
 };
+
+
 
 
