@@ -49,14 +49,10 @@ void AHeroCharacter::PossessedBy(AController* NewController)
 
 	if(!CharacterStartUpData.IsNull())
 	{
-		
 		if(UDataAsset_StartUpDataBase* LoadedData = CharacterStartUpData.LoadSynchronous())
 		{
 			LoadedData->GiveToAbilitySystemComponent(AshfallAbilitySystemComponent);
-
 		}
-
-
 	}
 
 }
@@ -64,8 +60,6 @@ void AHeroCharacter::PossessedBy(AController* NewController)
 void AHeroCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
-    Debug::Print(FString::Printf(TEXT("HeroCharacter BeginPlay")));
 }
 
 void AHeroCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)

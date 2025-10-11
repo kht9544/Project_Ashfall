@@ -40,7 +40,7 @@ void UAshfallAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FAshf
         AbilitySpec.Level = ApplyLevel;
         AbilitySpec.DynamicAbilityTags.AddTag(AbilitySet.InputTag);
 
-        //GiveAbility(AbilitySpec);
+        GiveAbility(AbilitySpec);
 
         OutGrantedAbilitySpecHandles.AddUnique(GiveAbility(AbilitySpec));
     }
