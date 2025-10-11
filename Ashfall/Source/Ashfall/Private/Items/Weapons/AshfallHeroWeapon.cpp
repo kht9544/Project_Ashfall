@@ -3,3 +3,12 @@
 
 #include "Items/Weapons/AshfallHeroWeapon.h"
 
+void AAshfallHeroWeapon::AssignGrantedAbilityspecHandles(const TArray<FGameplayAbilitySpecHandle>& InSpecHandles)
+{
+	GrantedAbilitySpecHandles = InSpecHandles;
+}
+
+TArray<FGameplayAbilitySpecHandle> AAshfallHeroWeapon::GetGrantedAbilitySpecHandles() const
+{
+	return GrantedAbilitySpecHandles;
+}

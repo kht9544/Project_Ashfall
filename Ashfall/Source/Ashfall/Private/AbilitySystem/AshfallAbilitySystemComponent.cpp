@@ -24,7 +24,7 @@ void UAshfallAbilitySystemComponent::OnAbilityInputReleased(const FGameplayTag& 
 	
 }
 
-void UAshfallAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FAshfallHeroAbilitySet>& InDefaultWeaponAbilities,int32 ApplyLevel)
+void UAshfallAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FAshfallHeroAbilitySet>& InDefaultWeaponAbilities,int32 ApplyLevel,TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitySpecHandles)
 {
     if(InDefaultWeaponAbilities.IsEmpty())
     {
@@ -40,6 +40,26 @@ void UAshfallAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FAshf
         AbilitySpec.Level = ApplyLevel;
         AbilitySpec.DynamicAbilityTags.AddTag(AbilitySet.InputTag);
 
-        GiveAbility(AbilitySpec);
+        //GiveAbility(AbilitySpec);
+
+        OutGrantedAbilitySpecHandles.AddUnique(GiveAbility(AbilitySpec));
     }
+}
+
+void UAshfallAbilitySystemComponent::RemoveGrantedHeroWeaponAbilities(UPARAM(ref) TArray<FGameplayAbilitySpecHandle>& InSpecHandlesToRemove)
+{
+	if(InSpecHandlesToRemove.IsEmpty())
+    {
+        return;
+    }
+
+    for(const FGameplayAbilitySpecHandle& SpecHandle : InSpecHandlesToRemove)
+    {
+        if(SpecHandle.IsValid())
+        {
+            ClearAbility(SpecHandle);
+        }
+    }
+
+    InSpecHandlesToRemove.Empty();
 }
