@@ -12,6 +12,22 @@ void UDataAsset_StartUpDataBase::GiveToAbilitySystemComponent(UAshfallAbilitySys
     GrantAbilities(ActivateOnGivenAbilities,InASCToGive,ApplyLevel);
     GrantAbilities(ReactivaeAbilities,InASCToGive,ApplyLevel);
 
+    if(!StartUpGameplayEffects.IsEmpty())
+    {
+        for(const TSubclassOf<UGameplayEffect> & EffectClass : StartUpGameplayEffects)
+        {
+            if(!EffectClass) continue;
+        
+            UGameplayEffect* EffectCDO = EffectClass->GetDefaultObject<UGameplayEffect>();
+            InASCToGive->ApplyGameplayEffectToSelf(
+                EffectCDO,
+                ApplyLevel,
+                InASCToGive->MakeEffectContext()
+            );
+
+
+        }
+    }
 }
 
 void UDataAsset_StartUpDataBase::GrantAbilities(const TArray<TSubclassOf<UAshfallGameplayAbility>>& InAbilitiesToGive, UAshfallAbilitySystemComponent* InASCToGive,int32 ApplyLevel)

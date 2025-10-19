@@ -8,6 +8,7 @@
 
 class UAshfallGameplayAbility;
 class UAshfallAbilitySystemComponent;
+class UGameplayEffect;
 
 /**
  * 
@@ -26,6 +27,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly,Category = "StartUpData")
 	TArray<TSubclassOf<UAshfallGameplayAbility>> ReactivaeAbilities;
+
+	UPROPERTY(EditDefaultsOnly,Category = "StartUpData")
+	TArray<TSubclassOf<UGameplayEffect>> StartUpGameplayEffects;
 
 	void GrantAbilities(const TArray<TSubclassOf<UAshfallGameplayAbility>>& InAbilitiesToGive, UAshfallAbilitySystemComponent* InASCToGive,int32 ApplyLevel = 1 );
 

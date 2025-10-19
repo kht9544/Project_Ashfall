@@ -13,7 +13,6 @@ void UDataAsset_HeroStartUpData::GiveToAbilitySystemComponent(UAshfallAbilitySys
     for(const FAshfallHeroAbilitySet& AbilitySet : HeroStartAbilitySets)
     {
         if(!AbilitySet.IsValid()) continue;
-
         FGameplayAbilitySpec AbilitySpec(AbilitySet.AbilityToGrant);
         AbilitySpec.SourceObject = InASCToGive->GetAvatarActor();
         AbilitySpec.Level = ApplyLevel;
