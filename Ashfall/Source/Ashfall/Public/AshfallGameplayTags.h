@@ -32,6 +32,6 @@ namespace AshfallGameplayTags
 	//Enemy Tag
 	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon);	
 
-
-
+	//Shared Tag
+	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);
 }

@@ -3,6 +3,7 @@
 
 #include "AshfallFunctionLibrary.h"
 #include "AbilitySystem/AshfallAbilitySystemComponent.h"
+#include "Interfaces/PawnCombatInterface.h"
 #include "AbilitySystemBlueprintLibrary.h"
 
 
@@ -27,7 +28,7 @@ void UAshfallFunctionLibrary::RemoveGameplayTagToActorIfNone(AActor* InActor,FGa
 {
 	UAshfallAbilitySystemComponent* ASC = NativeGetAshfallASCFromActor(InActor);
 
-    if(!ASC->HasMatchingGameplayTag(TagToRemove))
+    if(ASC->HasMatchingGameplayTag(TagToRemove))
     {
         ASC->RemoveLooseGameplayTag(TagToRemove);
     }
@@ -43,4 +44,24 @@ bool UAshfallFunctionLibrary::NativeDoesActorHaveTag(AActor* InActor,FGameplayTa
 void UAshfallFunctionLibrary::BP_DoesActorHaveTag(AActor* InActor,FGameplayTag TagToCheck,EAshfallConfirmType& OutConfirmType)
 {
     OutConfirmType = NativeDoesActorHaveTag(InActor,TagToCheck)? EAshfallConfirmType::Yes : EAshfallConfirmType::No;
+}
+
+UPawnCombatComponent* UAshfallFunctionLibrary::NativeGetPawnCombatComponentFromActor(AActor* InActor)
+{
+	check(InActor);
+
+    if(IPawnCombatInterface* PawnCombatInterface = Cast<IPawnCombatInterface>(InActor))
+    {
+        return PawnCombatInterface->GetPawnCombatComponent();
+    }
+
+    return nullptr;
+}
+
+UPawnCombatComponent* UAshfallFunctionLibrary::BP_GetPawnCombatComponentFromActor(AActor* InActor, EAshfallValidType& OutValidType)
+{
+    UPawnCombatComponent* CombatComponent =	NativeGetPawnCombatComponentFromActor(InActor);
+    OutValidType = CombatComponent ? EAshfallValidType::Valid : EAshfallValidType::Invalid;
+
+    return CombatComponent;
 }

@@ -8,6 +8,8 @@
 
 class UBoxComponent;
 
+DECLARE_DELEGATE_OneParam(FOnTargetInteractedDelegate,AActor*)
+
 UCLASS()
 class ASHFALL_API AAshfallWeaponBase : public AActor
 {
@@ -16,6 +18,9 @@ class ASHFALL_API AAshfallWeaponBase : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AAshfallWeaponBase();
+	
+	FOnTargetInteractedDelegate OnWeaponHitTarget;
+	FOnTargetInteractedDelegate OnWeaponPulledFromTarget;
 
 protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category = "Weapons")
@@ -24,7 +29,18 @@ protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category = "Weapons")
 	UBoxComponent* WeaponCollisionBox;
 
+	UFUNCTION()
+	virtual void OnCollisionBoxBeginOverlap(UPrimitiveComponent* OverlappedComp,AActor* OtherActor,UPrimitiveComponent* OtherComp,int32 OtherBodyIndex, bool bFromSweep,const FHitResult& SweepResult);
+
+	UFUNCTION()
+	virtual void OnCollisionBoxEndOverlap(UPrimitiveComponent* OverlappedComp,AActor* OtherActor,UPrimitiveComponent* OtherComp,int32 OtherBodyIndex);
+
+
 public:
 	FORCEINLINE UBoxComponent* GetWeaponCollisionBox() const {return WeaponCollisionBox;}
 
 };
+
+
+
+

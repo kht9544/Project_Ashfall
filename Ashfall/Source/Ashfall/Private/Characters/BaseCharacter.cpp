@@ -44,3 +44,8 @@ UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
 	return GetAshfallAbilitySystemComponent();
 }
 
+UPawnCombatComponent* ABaseCharacter::GetPawnCombatComponent() const 
+{
+	return nullptr;
+}
+

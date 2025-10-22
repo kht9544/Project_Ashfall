@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "Interfaces/PawnCombatInterface.h"
 #include "BaseCharacter.generated.h"
 
 class UAshfallAbilitySystemComponent;
@@ -13,16 +14,17 @@ class UDataAsset_StartUpDataBase;
 
 
 UCLASS()
-class ASHFALL_API ABaseCharacter : public ACharacter,public IAbilitySystemInterface
+class ASHFALL_API ABaseCharacter : public ACharacter,public IAbilitySystemInterface, public IPawnCombatInterface
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
 	ABaseCharacter();
-
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
 
 protected:
 
@@ -43,3 +45,4 @@ public:
 
 	FORCEINLINE UAshfallAttributeSet* GetAshfallAttributeSet() const{return AshfallAttributeSet;}
 };
+

@@ -27,6 +27,11 @@ AEnemyCharacter::AEnemyCharacter()
 
 }
 
+UPawnCombatComponent* AEnemyCharacter::GetPawnCombatComponent() const 
+{
+	return EnemyCombatComponent;
+}
+
 
 void AEnemyCharacter::PossessedBy(AController* NewController)
 {

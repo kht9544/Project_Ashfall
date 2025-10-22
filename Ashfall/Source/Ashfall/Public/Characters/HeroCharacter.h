@@ -24,6 +24,8 @@ class ASHFALL_API AHeroCharacter : public ABaseCharacter
 public:
 	AHeroCharacter();
 
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+
 protected:
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -62,6 +64,8 @@ public:
 
 
 };
+
+
 
 
 

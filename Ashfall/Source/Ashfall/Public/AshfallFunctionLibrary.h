@@ -2,19 +2,15 @@
 
 #pragma once
 
-#include "AbilitySystem/AshfallAbilitySystemComponent.h"
 #include "CoreMinimal.h"
+#include "AshfallTypes/AshfallEnumTypes.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "AshfallFunctionLibrary.generated.h"
 
 class UAshfallAbilitySystemComponent;
+class UPawnCombatComponent;
 
-UENUM()
-enum class EAshfallConfirmType : uint8
-{
-	Yes,
-	No
-};
+
 
 /**
  * 
@@ -37,4 +33,12 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Ashfall|FunctionLibrary", meta = (DisplayName = "Does Actor Have Tag",ExpandEnumAsExecs = "OutConfirmType"))
 	static void BP_DoesActorHaveTag(AActor* InActor,FGameplayTag TagToCheck,EAshfallConfirmType& OutConfirmType);
+
+	static UPawnCombatComponent* NativeGetPawnCombatComponentFromActor(AActor* InActor);
+
+	UFUNCTION(BlueprintCallable, Category = "Ashfall|FunctionLibrary", meta = (DisplayName = "Get Pawn Combat Component From Actor", ExpandEnumAsExecs = "OutValidType"))
+	static UPawnCombatComponent* BP_GetPawnCombatComponentFromActor(AActor* InActor, EAshfallValidType& OutValidType);
+
 };
+
+

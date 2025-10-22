@@ -29,5 +29,8 @@ namespace AshfallGameplayTags
     //Enemy Tag
     UE_DEFINE_GAMEPLAY_TAG(Enemy_Weapon, "Enemy.Weapon");
 
+    //SharedTags
+    UE_DEFINE_GAMEPLAY_TAG(Shared_Event_MeleeHit, "Shared.Event.MeleeHit");
+
     
 }

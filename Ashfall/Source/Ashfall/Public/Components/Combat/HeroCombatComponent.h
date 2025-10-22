@@ -20,4 +20,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Ashfall|Combat")
 	AAshfallHeroWeapon* GetHeroCarriedWeaponByTag(FGameplayTag InWeaponTag) const;
 	
+	virtual void OnHitTargetActor(AActor* HitActor) override;
+	virtual void OnWeaponPulledFromTargetActor(AActor* InteractedActor) override; 
 };
+

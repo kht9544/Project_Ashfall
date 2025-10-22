@@ -19,6 +19,8 @@ class ASHFALL_API AEnemyCharacter : public ABaseCharacter
 public:
 	AEnemyCharacter();
 
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+
 protected:
 	virtual void PossessedBy(AController* NewController) override;
 
@@ -32,6 +34,8 @@ public:
 	FORCEINLINE UEnemyCombatComponent* GetEnemyCombatComponent() const {return EnemyCombatComponent;}
 	
 };
+
+
 
 
 

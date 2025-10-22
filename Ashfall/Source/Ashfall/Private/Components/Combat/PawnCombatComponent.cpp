@@ -3,6 +3,7 @@
 
 #include "Components/Combat/PawnCombatComponent.h"
 #include "Items/Weapons/AshfallWeaponBase.h"
+#include "Components/BoxComponent.h"
 #include "DebugHelper.h"
 
 void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag InWeaponTagToRegister,AAshfallWeaponBase* InWeaponToRegister,bool bResgiterAsEquippedWeapon)
@@ -12,13 +13,14 @@ void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag InWeaponTagToRegis
 
 	CharacterCarriedWeaponMap.Emplace(InWeaponTagToRegister,InWeaponToRegister);
 
+	InWeaponToRegister->OnWeaponHitTarget.BindUObject(this,&ThisClass::OnHitTargetActor);
+	InWeaponToRegister->OnWeaponPulledFromTarget.BindUObject(this,&ThisClass::OnWeaponPulledFromTargetActor);
+
 	if(bResgiterAsEquippedWeapon)
 	{
 		CurrentEquippedWeaponTag = InWeaponTagToRegister;
 	}
 
-    const FString WeaponString = FString::Printf(TEXT("A Weapon named: %s has been register using the tag %s"),*InWeaponToRegister->GetName(),*InWeaponTagToRegister.ToString());
-    Debug::Print(WeaponString);
 }
 
 AAshfallWeaponBase* UPawnCombatComponent::GetCharacterCarriedWeaponByTag(FGameplayTag InWeaponTagToGet) const
@@ -44,4 +46,39 @@ AAshfallWeaponBase* UPawnCombatComponent::GetCharacterCurrentEquippedWeapon() co
 	}
 
 	return GetCharacterCarriedWeaponByTag(CurrentEquippedWeaponTag);
+}
+
+void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable,EToggleDamageType ToggleDamageType)
+{
+	if(ToggleDamageType == EToggleDamageType::CurrentEquippedWeapon)
+	{
+		AAshfallWeaponBase* WeaponToToggle = GetCharacterCurrentEquippedWeapon();
+	
+		check(WeaponToToggle);
+
+		if(bShouldEnable)
+		{
+			WeaponToToggle->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+		}
+		else
+		{
+			WeaponToToggle->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			
+			OverlappedActors.Empty();
+		}
+		
+	}
+
+	//TODO: Handle body collision boxes
+
+}
+
+void UPawnCombatComponent::OnHitTargetActor(AActor* HitActor)
+{
+	
+}
+
+void UPawnCombatComponent::OnWeaponPulledFromTargetActor(AActor* InteractedActor)
+{
+	
 }
