@@ -34,4 +34,8 @@ namespace AshfallGameplayTags
 
 	//Shared Tag
 	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);
+
+	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_SetByCaller_BaseDamage);
+
+
 }

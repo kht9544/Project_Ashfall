@@ -28,6 +28,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Ashfall|Ability")
 	UHeroCombatComponent* GetHeroCombatComponentFromActorInfo();
 
+	UFUNCTION(BlueprintPure, Category = "Ashfall|Ability")
+	FGameplayEffectSpecHandle MakeHeroDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage, FGameplayTag InCurrentAttackTypeTag,int32 InCurrentComboCount);
+
 private:
 	TWeakObjectPtr<AHeroCharacter> CachedAshfallHeroCharacter;
 
@@ -35,6 +38,9 @@ private:
 
 	
 };
+
+
+
 
 
 
