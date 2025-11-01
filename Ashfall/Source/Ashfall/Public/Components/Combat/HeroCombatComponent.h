@@ -19,8 +19,16 @@ class ASHFALL_API UHeroCombatComponent : public UPawnCombatComponent
 public:
 	UFUNCTION(BlueprintCallable, Category = "Ashfall|Combat")
 	AAshfallHeroWeapon* GetHeroCarriedWeaponByTag(FGameplayTag InWeaponTag) const;
+
+	UFUNCTION(BlueprintCallable, Category = "Ashfall|Combat")
+	AAshfallHeroWeapon* GetHeroCurrentEquippedWeapon() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Ashfall|Combat")
+	float GetHeroCurrentEquippedWeaponDamageAtLevel(float InLevel) const;
 	
 	virtual void OnHitTargetActor(AActor* HitActor) override;
 	virtual void OnWeaponPulledFromTargetActor(AActor* InteractedActor) override; 
 };
+
+
 

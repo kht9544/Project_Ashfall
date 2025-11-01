@@ -29,6 +29,9 @@ namespace AshfallGameplayTags
 
 	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Status_JumpToFinisher);
 
+	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Light);
+	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Heavy);
+
 	//Enemy Tag
 	ASHFALL_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon);	
 

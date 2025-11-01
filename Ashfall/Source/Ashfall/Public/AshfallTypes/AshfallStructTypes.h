@@ -2,7 +2,9 @@
 
 #pragma once
 #include "GameplayTagContainer.h"
+#include "ScalableFloat.h"
 #include "AshfallStructTypes.generated.h"
+
 
 class UAshfallHeroLinkedAnimInstance;
 class UAshfallGameplayAbility;
@@ -37,6 +39,9 @@ struct FAshfallHeroWeaponData
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
 	TArray<FAshfallHeroAbilitySet> DefaultWeaponAbilities;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FScalableFloat WeaponBaseDamage;
 
 };
 

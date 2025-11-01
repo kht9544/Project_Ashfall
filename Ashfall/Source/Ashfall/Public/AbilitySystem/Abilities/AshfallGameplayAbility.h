@@ -1,9 +1,11 @@
+
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "AshfallTypes/AshfallEnumTypes.h"
 #include "AshfallGameplayAbility.generated.h"
 
 class UPawnCombatComponent;
@@ -38,7 +40,15 @@ protected:
 	UFUNCTION(BlueprintPure, Category = "Ashfall|Ability")
 	UAshfallAbilitySystemComponent* GetAshfallAbilitySystemComponentFromActorInfo() const;
 
+	FActiveGameplayEffectHandle NativeApplyEffectSpecHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle);
+	
+	UFUNCTION(BlueprintCallable, Category = "Ashfall|Ability", meta = (DisplayName = "Apply Gameplay Effect Spec Handle To Target Actor", ExpandEnumAsExecs = "OutSuccessType"))
+	FActiveGameplayEffectHandle BP_ApplyEffectSpecHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle, EAshfallSuccessType& OutSuccessType);
+
 };
+
+
+
 
 
 
