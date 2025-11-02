@@ -24,6 +24,8 @@ class ASHFALL_API UAshfallAttributeSet : public UAttributeSet
 public:
 	UAshfallAttributeSet();
 
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData &Data) override;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Health")
 	FGameplayAttributeData CurrentHealth;
 	ATTRIBUTE_ACCESSORS(UAshfallAttributeSet, CurrentHealth)
@@ -47,7 +49,12 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Damage")
 	FGameplayAttributeData DefensePower;
 	ATTRIBUTE_ACCESSORS(UAshfallAttributeSet, DefensePower)
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Damage")
+	FGameplayAttributeData DamageTaken;
+	ATTRIBUTE_ACCESSORS(UAshfallAttributeSet, DamageTaken)
 
 };
+
 
 
