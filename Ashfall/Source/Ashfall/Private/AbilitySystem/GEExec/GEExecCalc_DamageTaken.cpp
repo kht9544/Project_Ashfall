@@ -98,7 +98,7 @@ void UGEExecCalc_DamageTaken::Execute_Implementation(const FGameplayEffectCustom
 
     if(UsedLightAttackComboCount != 0)
     {
-        const float DamageIncreasePercentLight = (UsedLightAttackComboCount - 1) * 0.05 * 1.f;
+        const float DamageIncreasePercentLight = UsedLightAttackComboCount * 0.05 * 1.f;
 
         BaseDamage *= DamageIncreasePercentLight;
     }
