@@ -41,11 +41,20 @@ void UHeroCombatComponent::OnHitTargetActor(AActor* HitActor)
         Data
     );
 
+    UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
+        GetOwningPawn(),
+        AshfallGameplayTags::Player_Event_HitPause,
+        FGameplayEventData()
+    );
 
 }
 
 void UHeroCombatComponent::OnWeaponPulledFromTargetActor(AActor* InteractedActor)
 {
-	
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
+        GetOwningPawn(),
+        AshfallGameplayTags::Player_Event_HitPause,
+        FGameplayEventData()
+    );
 }
 
